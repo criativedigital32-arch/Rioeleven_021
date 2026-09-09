@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia de Tamanhos</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:20px}
+.container{max-width:700px;margin:auto;background:white;padding:20px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,.1)}
+h1,h2{text-align:center}
+label{display:block;margin-top:15px;font-weight:bold}
+select,input{width:100%;padding:12px;margin-top:5px;border:1px solid #ccc;border-radius:5px;box-sizing:border-box}
+button{width:100%;padding:12px;margin-top:20px;border:none;border-radius:5px;background:#007bff;color:white;font-size:16px;cursor:pointer}
+button:hover{background:#0056b3}
+.card{margin-top:20px;background:#f8f8f8;padding:15px;border-radius:8px}
+.card p{margin:8px 0}
+.recomendado{margin-top:20px;background:#28a745;color:white;padding:20px;border-radius:8px}
+.recomendado h3{margin-top:0;text-align:center}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Guia de Tamanhos</h1>
+<label>Gênero</label>
+<select id="genero">
+<option value="masculino">Masculino</option>
+<option value="feminino">Feminino</option>
+<option value="infantil">Infantil</option>
+</select>
+<label>Tamanho</label>
+<select id="tamanho"></select>
+<div class="card">
+<p><strong>Largura:</strong> <span id="largura">-</span></p>
+<p><strong>Comprimento:</strong> <span id="comprimento">-</span></p>
+<p><strong>Altura Indicada:</strong> <span id="altura">-</span></p>
+<p><strong>Peso Indicado:</strong> <span id="peso">-</span></p>
+</div>
+<h2>Provador Virtual</h2>
+<label>Altura (cm)</label>
+<input type="number" id="alturaCliente" placeholder="Ex: 175">
+<label>Peso (kg)</label>
+<input type="number" id="pesoCliente" placeholder="Ex: 80">
+<button id="btnRecomendar">Descobrir Meu Tamanho</button>
+<div id="recomendacao"></div>
+</div>
+<script>
+const dados={
+masculino:{
+P:{largura:"50 cm",comprimento:"69 cm",altura:"1,60 - 1,70 m",peso:"55 - 70 kg"},
+M:{largura:"53 cm",comprimento:"72 cm",altura:"1,65 - 1,75 m",peso:"70 - 80 kg"},
+G:{largura:"56 cm",comprimento:"74 cm",altura:"1,70 - 1,80 m",peso:"80 - 90 kg"},
+GG:{largura:"60 cm",comprimento:"77 cm",altura:"1,75 - 1,85 m",peso:"90 - 105 kg"},
+"2XL":{largura:"64 cm",comprimento:"80 cm",altura:"1,80 - 1,90 m",peso:"105 - 120 kg"},
+"3XL":{largura:"68 cm",comprimento:"83 cm",altura:"1,85 - 1,95 m",peso:"120 - 135 kg"},
+"4XL":{largura:"72 cm",comprimento:"86 cm",altura:"1,90 - 2,00 m",peso:"135 - 150 kg"}},
+feminino:{
+P:{largura:"50 cm",comprimento:"69 cm",altura:"1,50 - 1,60 m",peso:"45 - 60 kg"},
+M:{largura:"53 cm",comprimento:"72 cm",altura:"1,55 - 1,65 m",peso:"60 - 70 kg"},
+G:{largura:"56 cm",comprimento:"74 cm",altura:"1,60 - 1,72 m",peso:"70 - 80 kg"},
+GG:{largura:"60 cm",comprimento:"77 cm",altura:"1,65 - 1,78 m",peso:"80 - 90 kg"},
+"2XL":{largura:"64 cm",comprimento:"80 cm",altura:"1,70 - 1,82 m",peso:"90 - 105 kg"},
+"3XL":{largura:"68 cm",comprimento:"83 cm",altura:"1,75 - 1,88 m",peso:"105 - 120 kg"},
+"4XL":{largura:"72 cm",comprimento:"86 cm",altura:"1,80 - 1,95 m",peso:"120 - 135 kg"}},
+infantil:{
+2:{largura:"32 cm",comprimento:"42 cm",altura:"0,90 - 1,00 m",peso:"12 - 15 kg"},
+4:{largura:"35 cm",comprimento:"45 cm",altura:"1,00 - 1,10 m",peso:"15 - 20 kg"},
+6:{largura:"38 cm",comprimento:"49 cm",altura:"1,10 - 1,20 m",peso:"20 - 25 kg"},
+8:{largura:"41 cm",comprimento:"53 cm",altura:"1,20 - 1,30 m",peso:"25 - 30 kg"},
+10:{largura:"44 cm",comprimento:"57 cm",altura:"1,30 - 1,40 m",peso:"30 - 35 kg"},
+12:{largura:"47 cm",comprimento:"61 cm",altura:"1,40 - 1,50 m",peso:"35 - 45 kg"},
+14:{largura:"50 cm",comprimento:"65 cm",altura:"1,50 - 1,60 m",peso:"45 - 55 kg"}}
+};
+const generoSelect=document.getElementById("genero");
+const tamanhoSelect=document.getElementById("tamanho");
+function carregarTamanhos(){
+const genero=generoSelect.value;tamanhoSelect.innerHTML="";
+Object.keys(dados[genero]).forEach(tamanho=>{
+const option=document.createElement("option");option.value=tamanho;option.textContent=tamanho;tamanhoSelect.appendChild(option);
+});
+mostrarMedidas();
+}
+function mostrarMedidas(){
+const item=dados[generoSelect.value][tamanhoSelect.value];if(!item)return;
+document.getElementById("largura").textContent=item.largura;
+document.getElementById("comprimento").textContent=item.comprimento;
+document.getElementById("altura").textContent=item.altura;
+document.getElementById("peso").textContent=item.peso;
+}
+function recomendar(){
+const genero=generoSelect.value;
+const altura=Number(document.getElementById("alturaCliente").value);
+const peso=Number(document.getElementById("pesoCliente").value);
+let tamanho="";
+if(genero==="masculino"){
+if(peso<=70)tamanho="P";else if(peso<=80)tamanho="M";else if(peso<=90)tamanho="G";else if(peso<=105)tamanho="GG";else if(peso<=120)tamanho="2XL";else if(peso<=135)tamanho="3XL";else tamanho="4XL";
+}else if(genero==="feminino"){
+if(peso<=60)tamanho="P";else if(peso<=70)tamanho="M";else if(peso<=80)tamanho="G";else if(peso<=90)tamanho="GG";else if(peso<=105)tamanho="2XL";else if(peso<=120)tamanho="3XL";else tamanho="4XL";
+}else{
+if(altura<=100)tamanho="2";else if(altura<=110)tamanho="4";else if(altura<=120)tamanho="6";else if(altura<=130)tamanho="8";else if(altura<=140)tamanho="10";else if(altura<=150)tamanho="12";else tamanho="14";
+}
+tamanhoSelect.value=tamanho;mostrarMedidas();
+const item=dados[genero][tamanho];
+document.getElementById("recomendacao").innerHTML=`<div class="recomendado"><h3>✅ Tamanho Recomendado: ${tamanho}</h3><p><strong>Largura:</strong> ${item.largura}</p><p><strong>Comprimento:</strong> ${item.comprimento}</p><p><strong>Altura Indicada:</strong> ${item.altura}</p><p><strong>Peso Indicado:</strong> ${item.peso}</p></div>`;
+}
+generoSelect.addEventListener("change",carregarTamanhos);
+tamanhoSelect.addEventListener("change",mostrarMedidas);
+document.getElementById("btnRecomendar").addEventListener("click",recomendar);
+carregarTamanhos();
+</script>
+</body>
+</html>
