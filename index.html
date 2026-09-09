@@ -45,327 +45,166 @@ button:hover{background:#0056b3}
 </div>
 <script>
 const dados = {
-2
- 
-3
+
 masculino:{
-4
- 
-5
+
 P:{
-6
 largura:"54 cm",
-7
 comprimento:"70 cm",
-8
 altura:"1,62 - 1,70 m",
-9
 peso:"50 - 62 kg"
-10
 },
-11
- 
-12
+
 M:{
-13
 largura:"56 cm",
-14
 comprimento:"72 cm",
-15
 altura:"1,70 - 1,76 m",
-16
 peso:"62 - 78 kg"
-17
 },
-18
- 
-19
+
 G:{
-20
 largura:"58 cm",
-21
 comprimento:"74 cm",
-22
 altura:"1,76 - 1,82 m",
-23
 peso:"78 - 85 kg"
-24
 },
-25
- 
-26
+
 GG:{
-27
 largura:"60 cm",
-28
 comprimento:"77 cm",
-29
 altura:"1,82 - 1,90 m",
-30
 peso:"85 - 97 kg"
-31
 },
-32
- 
-33
+
 "2XL":{
-34
 largura:"62 cm",
-35
 comprimento:"80 cm",
-36
 altura:"1,90 - 1,95 m",
-37
 peso:"97 - 108 kg"
-38
 },
-39
- 
-40
+
 "3XL":{
-41
 largura:"64 cm",
-42
 comprimento:"82 cm",
-43
 altura:"1,92 - 2,00 m",
-44
 peso:"108 - 120 kg"
-45
 },
-46
- 
-47
+
 "4XL":{
-48
 largura:"66 cm",
-49
 comprimento:"84 cm",
-50
 altura:"1,95 - 2,05 m",
-51
 peso:"120 - 135 kg"
-52
 }
-53
- 
-54
+
 },
-55
- 
-56
+
 feminino:{
-57
- 
-58
+
 P:{
-59
 largura:"54 cm",
-60
 comprimento:"70 cm",
-61
 altura:"1,50 - 1,60 m",
-62
 peso:"45 - 60 kg"
-63
 },
-64
- 
-65
+
 M:{
-66
 largura:"56 cm",
-67
 comprimento:"72 cm",
-68
 altura:"1,55 - 1,65 m",
-69
 peso:"60 - 70 kg"
-70
 },
-71
- 
-72
+
 G:{
-73
 largura:"58 cm",
-74
 comprimento:"74 cm",
-75
 altura:"1,60 - 1,72 m",
-76
 peso:"70 - 80 kg"
-77
 },
-78
- 
-79
+
 GG:{
-80
 largura:"60 cm",
-81
 comprimento:"77 cm",
-82
 altura:"1,65 - 1,78 m",
-83
 peso:"80 - 90 kg"
-84
 },
-85
- 
-86
+
 "2XL":{
-87
 largura:"62 cm",
-88
 comprimento:"80 cm",
-89
 altura:"1,70 - 1,82 m",
-90
 peso:"90 - 105 kg"
-91
 },
-92
- 
-93
+
 "3XL":{
-94
 largura:"64 cm",
-95
 comprimento:"82 cm",
-96
 altura:"1,75 - 1,88 m",
-97
 peso:"105 - 120 kg"
-98
 },
-99
- 
-100
+
 "4XL":{
-101
 largura:"66 cm",
-102
 comprimento:"84 cm",
-103
 altura:"1,80 - 1,95 m",
-104
 peso:"120 - 135 kg"
-105
 }
-106
- 
-107
+
 },
-108
- 
-109
+
 infantil:{
-110
- 
-111
+
 2:{
-112
 largura:"32 cm",
-113
 comprimento:"44 cm",
-114
 altura:"0,90 - 1,00 m",
-115
 peso:"12 - 15 kg"
-116
 },
-117
- 
-118
+
 4:{
-119
 largura:"35 cm",
-120
 comprimento:"47 cm",
-121
 altura:"1,00 - 1,10 m",
-122
 peso:"15 - 20 kg"
-123
 },
-124
- 
-125
+
 6:{
-126
 largura:"38 cm",
-127
 comprimento:"50 cm",
-128
 altura:"1,10 - 1,20 m",
-129
 peso:"20 - 25 kg"
-130
 },
-131
- 
-132
+
 8:{
-133
 largura:"41 cm",
-134
 comprimento:"53 cm",
-135
 altura:"1,20 - 1,30 m",
-136
 peso:"25 - 30 kg"
-137
 },
-138
- 
-139
+
 10:{
-140
 largura:"44 cm",
-141
 comprimento:"56 cm",
-142
 altura:"1,30 - 1,40 m",
-143
 peso:"30 - 35 kg"
-144
 },
-145
- 
-146
+
 12:{
-147
 largura:"47 cm",
-148
 comprimento:"60 cm",
-149
 altura:"1,40 - 1,50 m",
-150
 peso:"35 - 45 kg"
-151
 },
-152
- 
-153
+
 14:{
-154
 largura:"50 cm",
-155
 comprimento:"63 cm",
-156
 altura:"1,50 - 1,60 m",
-157
 peso:"45 - 55 kg"
-158
 }
-159
- 
-160
+
 }
-161
- 
-162
+
 };
 const generoSelect=document.getElementById("genero");
 const tamanhoSelect=document.getElementById("tamanho");
